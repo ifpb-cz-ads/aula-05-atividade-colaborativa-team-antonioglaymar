@@ -27,4 +27,19 @@ public class SumServlet extends HttpServlet{
         RequestDispatcher view = request.getRequestDispatcher("sum.jsp");
         view.forward(request, response);
     }
+    
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws IOException, ServletException {
+        String[] numbers = request.getParameterValues("values");
+
+        Double sum = 0.0;
+        for (String number : numbers){
+            sum += Double.parseDouble(number);
+        }
+
+        request.setAttribute("result", sum);
+        RequestDispatcher view = request.getRequestDispatcher("sum.jsp");
+        view.forward(request, response);
+    }
 }
